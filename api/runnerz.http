@@ -1,0 +1,48 @@
+### Find All Runs
+GET http://localhost:8080/api/runs
+
+### Find Run By ID
+GET http://localhost:8080/api/runs/2
+
+
+### Create new Run
+POST http://localhost:8080/api/runs
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "Tuesday Morning Run",
+  "startedAt": "2024-09-21T23:13:56.713763",
+  "completedAt": "2024-09-21T23:33:56.713772",
+  "miles": 4,
+  "location": "INDOOR"
+}
+
+### Create new Run with invalid dates (completedOn is before startedOn)
+POST http://localhost:8080/api/runs
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "Saturday Morning Run",
+  "startedOn": "2024-02-27T16:00:12.49766",
+  "completedOn": "2024-02-27T15:01:12.497678",
+  "miles": 6,
+  "location": "OUTDOOR"
+}
+
+### Update an existing Run
+PUT http://localhost:8080/api/runs/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Early Morning Run",
+  "startedAt": "2024-09-19T23:25:01.525108",
+  "completedAt": "2024-09-20T00:25:01.525114",
+  "miles": 5,
+  "location": "OUTDOOR"
+}
+
+### Delete a Run
+DELETE http://localhost:8080/api/runs/2
