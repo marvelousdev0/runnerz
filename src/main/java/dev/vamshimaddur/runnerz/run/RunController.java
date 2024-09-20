@@ -34,24 +34,29 @@ public class RunController {
 
     @GetMapping("/count")
     int countRuns() {
-        return runRepository.count();
+        return (int) runRepository.count();
+    }
+
+    @GetMapping("/location/{location}")
+    List<Run> getRunsByLocation(@PathVariable String location) {
+        return runRepository.findAllByLocation(Location.valueOf(location.toUpperCase()));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void createRun(@Valid @RequestBody Run run) {
-        runRepository.create(run);
+        runRepository.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void updateRun(@PathVariable String id, @Valid @RequestBody Run run) {
-        runRepository.update(Integer.parseInt(id), run);
+        runRepository.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void deleteRun(@PathVariable String id) {
-        runRepository.delete(Integer.parseInt(id));
+        runRepository.deleteById(Integer.parseInt(id));
     }
 }
