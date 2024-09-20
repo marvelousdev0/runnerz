@@ -27,6 +27,7 @@ public class RunJsonDataLoader implements CommandLineRunner {
         if (runRepository.count() == 0) {
             try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/runs.json")) {
                 Runs all = objectMapper.readValue(inputStream, Runs.class);
+                log.info("Loading runs {}", all.runs().size());
                 runRepository.createAll(all.runs());
             } catch (IOException e) {
                 log.error("Failed to load runs", e);
