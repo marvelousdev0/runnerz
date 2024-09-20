@@ -32,6 +32,11 @@ public class RunController {
 
     }
 
+    @GetMapping("/count")
+    int countRuns() {
+        return runRepository.count();
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void createRun(@Valid @RequestBody Run run) {
